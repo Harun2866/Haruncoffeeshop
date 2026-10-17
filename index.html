@@ -3,149 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>হারুনের কফি শপ</title>
+    <title>হারুন অর রশিদ এর কফি শপ | Harun Ur Rashid's Coffee Shop</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* ==========================================
+           1. CSS VARIABLES & BASE STYLES
+           ========================================== */
         :root {
-            --primary-color: #6f4e37;
-            --primary-hover: #583e2e;
-            --secondary-color: #25d366;
-            --bg-color: #f4f1ea;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --light-text: #666666;
-            --border-color: #e0e0e0;
+            --primary-color: #6F4E37; /* Coffee Brown */
+            --primary-hover: #523824;
+            --accent-color: #D4A373;  /* Warm Gold/Amber */
+            --bg-light: #FAEDCD;      /* Warm Cream */
+            --bg-dark: #1E1B18;       /* Dark Espresso */
+            --text-dark: #2B2D42;
+            --text-light: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+            --font-main: 'Hind Siliguri', 'Poppins', sans-serif;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #FDFBF7;
+            color: var(--text-dark);
             line-height: 1.6;
         }
 
-        /* Header & Nav */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        nav a {
-            color: white;
+        a {
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: inherit;
         }
 
-        nav a:hover {
-            color: #d7ccc8;
+        ul {
+            list-style: none;
         }
 
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Hero / Owner Section */
-        .hero {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .hero-img {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-color);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .hero-content h1 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-content h3 {
-            color: var(--light-text);
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Section Title */
         .section-title {
             text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-size: 2rem;
-            position: relative;
+            margin-bottom: 40px;
         }
 
-        .section-title::after {
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: var(--primary-color);
-            margin: 8px auto 0;
+            background-color: var(--accent-color);
             border-radius: 2px;
         }
 
-        /* Menu Grid */
-        .products-grid {
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: #c08e5e;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================
+           2. HEADER & NAVIGATION
+           ========================================== */
+        header {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            background: linear-gradient(rgba(30, 27, 24, 0.75), rgba(30, 27, 24, 0.75)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+            height: 80vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* ==========================================
+           4. MENU SECTION
+           ========================================== */
+        .menu-section {
+            padding: 80px 0;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .product-card {
-            background: var(--card-bg);
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid #EAEAEA;
             display: flex;
             flex-direction: column;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: var(--shadow-lg);
         }
 
         .product-img {
@@ -155,7 +274,7 @@
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -163,53 +282,107 @@
 
         .product-title {
             font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .product-desc {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            flex-grow: 1;
+            color: var(--text-dark);
+            margin-bottom: 8px;
         }
 
         .product-price {
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
 
-        .btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================
+           5. CONTACT SECTION & FOOTER
+           ========================================== */
+        .contact-section {
+            background-color: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .contact-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-sm);
             text-align: center;
-            transition: background 0.3s;
-            text-decoration: none;
-            display: inline-block;
         }
 
-        .btn:hover {
-            background: var(--primary-hover);
+        .owner-details {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #EAEAEA;
+        }
+
+        .owner-details h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .owner-details p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            min-width: 240px;
+        }
+
+        .btn-phone {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-phone:hover {
+            background-color: #1DA851;
         }
 
         .btn-whatsapp {
-            background-color: var(--secondary-color);
-            margin-top: 0.5rem;
+            background-color: #128C7E;
+            color: white;
         }
 
         .btn-whatsapp:hover {
-            background-color: #1eb956;
+            background-color: #0B665C;
         }
 
-        /* Modal Styles */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           6. MODALS (PRODUCT DETAILS & ORDER FORM)
+           ========================================== */
         .modal {
             display: none;
             position: fixed;
@@ -217,389 +390,285 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background-color: rgba(0, 0, 0, 0.6);
             z-index: 2000;
-            justify-content: center;
             align-items: center;
-            padding: 1rem;
+            justify-content: center;
+            padding: 20px;
             overflow-y: auto;
         }
 
+        .modal.active {
+            display: flex;
+        }
+
         .modal-content {
-            background: var(--card-bg);
+            background-color: var(--card-bg);
             border-radius: 12px;
-            max-width: 600px;
+            max-width: 550px;
             width: 100%;
-            padding: 2rem;
             position: relative;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            animation: modalFade 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .close-modal {
             position: absolute;
             top: 15px;
             right: 20px;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
             color: #888;
+            transition: var(--transition);
         }
 
         .close-modal:hover {
-            color: #333;
+            color: var(--text-dark);
         }
 
+        /* Product Details Modal Content */
         .modal-img {
             width: 100%;
-            height: 250px;
+            height: 220px;
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
-        /* Form Controls */
+        .modal-body h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .modal-body .section-heading {
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .modal-body p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Form Styles */
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 18px;
+            text-align: left;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.4rem;
             font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            border: 1px solid #CCC;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            transition: var(--transition);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.2);
         }
 
-        /* Contact & Footer */
-        .contact-section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: space-around;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        footer {
-            background: var(--primary-color);
-            color: white;
+        /* Order Confirmation View */
+        .confirmation-view {
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
+            padding: 20px 10px;
         }
 
+        .confirmation-icon {
+            font-size: 3.5rem;
+            color: #25D366;
+            margin-bottom: 15px;
+        }
+
+        .confirmation-text {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* ==========================================
+           7. RESPONSIVE MEDIA QUERIES
+           ========================================== */
         @media (max-width: 768px) {
-            .hero {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-dark);
                 flex-direction: column;
+                padding: 20px 0;
                 text-align: center;
+                box-shadow: var(--shadow-sm);
             }
-            .hero-img {
-                width: 180px;
-                height: 180px;
+
+            .nav-links.active {
+                display: flex;
             }
-            header {
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .contact-buttons {
                 flex-direction: column;
-                gap: 1rem;
             }
-            nav a {
-                margin: 0 0.5rem;
+
+            .contact-btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- ==========================================
+         HEADER & NAVIGATION
+         ========================================== -->
     <header>
-        <div class="logo">
-            <i class="fas fa-coffee"></i> হারুনের কফি শপ
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <i class="fa-solid font-awesome-logo-full fa-mug-hot"></i>
+                    <span>হারুন অর রশিদ এর কফি শপ</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" onclick="toggleNav()">হোম</a></li>
+                    <li><a href="#menu" onclick="toggleNav()">মাই মেনু</a></li>
+                    <li><a href="#contact" onclick="toggleNav()">যোগাযোগ করুন</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger" onclick="toggleNav()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
         </div>
-        <nav>
-            <a href="#home">হোম</a>
-            <a href="#menu">মেনু</a>
-            <a href="#about">আমাদের কথা</a>
-            <a href="#contact">যোগাযোগ</a>
-        </nav>
     </header>
 
-    <div class="container" id="home">
-        <!-- Hero / Owner Section -->
-        <section class="hero">
-            <img src="1000082357.jpg" alt="মোহাম্মদ হারুন অর রশিদ" class="hero-img">
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero" id="home">
+        <div class="container">
             <div class="hero-content">
-                <h1>স্বাগতম, হারুনের কফি শপ-এ!</h1>
-                <h3>স্বত্বাধিকারী: মোহাম্মদ হারুন অর রশিদ</h3>
-                <p>আমরা প্রদান করি সেরা মানের তাজা কফি, সুস্বাদু বিরিয়ানি, বারবিকিউ, পিৎজা, বার্গার এবং রিফ্রেশিং লাচ্ছি। আপনার প্রতিটি মুহূর্তকে সুস্বাদু করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
-                <a href="#menu" class="btn" style="width: auto; padding: 0.75rem 2rem;">মেনু দেখুন</a>
+                <div class="hero-subtitle">স্বাদ ও গুণমানের অনন্য মেলবন্ধন</div>
+                <h1 class="hero-title">হারুন অর রশিদ এর কফি শপে আপনাকে স্বাগতম</h1>
+                <p class="hero-description">সেরা ফ্রেশ কফি, সুস্বাদু বিরিয়ানি এবং ফাস্ট ফুডের স্বাদ নিতে এখনই আমাদের মেনু ভিজিট করুন এবং অর্ডার করুন।</p>
+                <a href="#menu" class="btn btn-primary" style="padding: 12px 30px; font-size: 1.1rem;">
+                    <i class="fa-solid fa-utensils"></i> মেনু দেখুন
+                </a>
             </div>
-        </section>
-
-        <!-- Menu Section -->
-        <section id="menu">
-            <h2 class="section-title">আমাদের সুস্বাদু মেনু</h2>
-            <div class="products-grid" id="products-grid">
-                <!-- Products dynamically rendered here -->
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <h2 class="section-title">যোগাযোগ করুন</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-user"></i>
-                    <div>
-                        <strong>মালিক:</strong>
-                        <div>মোহাম্মদ হারুন অর রশিদ</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>
-                        <strong>মোবাইল ও হোয়াটসঅ্যাপ:</strong>
-                        <div>01706712866</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <div>
-                        <strong>সরাসরি হোয়াটসঅ্যাপ চ্যাট:</strong>
-                        <div><a href="https://wa.me/8801706712866" target="_blank" style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">চ্যাট শুরু করতে এখানে ক্লিক করুন</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Product Details Modal -->
-    <div class="modal" id="details-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeDetailsModal()">&times;</span>
-            <img src="" id="modal-img" class="modal-img" alt="">
-            <h2 id="modal-title" style="margin-bottom: 0.5rem;"></h2>
-            <p id="modal-price" style="font-size: 1.3rem; color: var(--primary-color); font-weight: bold; margin-bottom: 1rem;"></p>
-            <p id="modal-desc" style="color: var(--light-text); margin-bottom: 1.5rem;"></p>
-            
-            <button class="btn" onclick="openCheckoutFromModal()">Order Now (অর্ডার করুন)</button>
-            <button class="btn btn-whatsapp" id="modal-whatsapp-btn"><i class="fab fa-whatsapp"></i> সরাসরি হোয়াটসঅ্যাপে অর্ডার করুন</button>
         </div>
-    </div>
+    </section>
 
-    <!-- Checkout Modal -->
-    <div class="modal" id="checkout-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
-            <h2 style="margin-bottom: 1rem; color: var(--primary-color);">অর্ডার নিশ্চিত করুন</h2>
-            <p id="checkout-item-title" style="font-weight: bold; margin-bottom: 1rem;"></p>
-            
-            <form id="order-form" onsubmit="submitOrder(event)">
-                <div class="form-group">
-                    <label for="cust-name">আপনার নাম *</label>
-                    <input type="text" id="cust-name" class="form-control" required placeholder="আপনার পূর্ণ নাম">
-                </div>
+    <!-- ==========================================
+         MENU SECTION ("MY MENU")
+         ========================================== -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>মাই মেনু (My Menu)</h2>
+            </div>
 
-                <div class="form-group">
-                    <label for="cust-phone">মোবাইল নম্বর *</label>
-                    <input type="tel" id="cust-phone" class="form-control" required placeholder="017XXXXXXXX">
-                </div>
+            <!-- Category Filter Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="filterCategory('all')">সব আইটেম</button>
+                <button class="tab-btn" onclick="filterCategory('hot-coffee')">হট কফি</button>
+                <button class="tab-btn" onclick="filterCategory('cold-coffee')">কোল্ড কফি</button>
+                <button class="tab-btn" onclick="filterCategory('lassi')">লাচ্ছি</button>
+                <button class="tab-btn" onclick="filterCategory('pasta')">পাস্তা</button>
+                <button class="tab-btn" onclick="filterCategory('biryani')">বিরিয়ানি</button>
+                <button class="tab-btn" onclick="filterCategory('fast-food')">ফাস্ট ফুড</button>
+            </div>
 
-                <div class="form-group">
-                    <label for="district-select">জেলা *</label>
-                    <select id="district-select" class="form-control" required onchange="onDistrictChange()">
-                        <option value="">জেলা নির্বাচন করুন</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="upazila-select">উপজেলা *</label>
-                    <select id="upazila-select" class="form-control" required onchange="onUpazilaChange()" disabled>
-                        <option value="">প্রথমে জেলা নির্বাচন করুন</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="union-select">ইউনিয়ন *</label>
-                    <select id="union-select" class="form-control" required onchange="onUnionChange()" disabled>
-                        <option value="">প্রথমে উপজেলা নির্বাচন করুন</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="village-select">গ্রাম *</label>
-                    <select id="village-select" class="form-control" required disabled>
-                        <option value="">প্রথমে ইউনিয়ন নির্বাচন করুন</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="cust-address">বিস্তারিত ঠিকানা (বাড়ি/রোড নম্বর) *</label>
-                    <textarea id="cust-address" class="form-control" rows="2" required placeholder="যেমন: হাউস ১০, রোড ৪..."></textarea>
-                </div>
-
-                <button type="submit" class="btn"><i class="fas fa-check-circle"></i> অর্ডার সাবমিট করুন</button>
-            </form>
+            <!-- Product Items Grid -->
+            <div class="product-grid" id="productGrid">
+                <!-- Products dynamically rendered by JavaScript -->
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- ==========================================
+         CONTACT SECTION
+         ========================================== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>যোগাযোগ করুন</h2>
+            </div>
+            <div class="contact-card">
+                <div class="owner-details">
+                    <h3>হারুন অর রশিদ এর কফি শপ</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> গ্রাম: হাকরইল, উপজেলা: নাচোল, জেলা: চাঁপাইনবাবগঞ্জ</p>
+                </div>
+                <div class="contact-buttons">
+                    <!-- Option 1: Direct Phone Call -->
+                    <a href="tel:01706712866" class="btn contact-btn btn-phone">
+                        <i class="fa-solid fa-phone"></i> ফোন করুন (01706712866)
+                    </a>
+                    <!-- Option 2: Direct WhatsApp Chat -->
+                    <a href="https://wa.me/8801706712866" target="_blank" class="btn contact-btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> প্রয়োজনে চ্যাট করুন
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
     <footer>
-        <p>&copy; ২০২৬ হারুনের কফি শপ। সর্বস্বত্ব সংরক্ষিত। স্বত্বাধিকারী: মোহাম্মদ হারুন অর রশিদ (০১৭০৬৭১২৮৬৬)</p>
+        <div class="container">
+            <p>&copy; 2026 হারুন অর রশিদ এর কফি শপ। সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
     </footer>
 
-    <script>
-        // Owner WhatsApp Number
-        const OWNER_PHONE = "8801706712866";
-
-        // Products Data
-        const products = [
-            {
-                id: 1,
-                name: 'স্পেশাল কফি',
-                price: 120,
-                desc: 'আমাদের প্রিমিয়াম অ্যারাবিকা বিন থেকে তৈরি তাজা সুবাসিত হট কফি।',
-                image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80'
-            },
-            {
-                id: 2,
-                name: 'চিকেন বিরিয়ানি',
-                price: 250,
-                desc: 'খাস বাসমতি চাল ও স্পেশাল মশলায় তৈরি জিভে জল আনা চিকেন বিরিয়ানি।',
-                image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80'
-            },
-            {
-                id: 3,
-                name: 'চিকেন বারবিকিউ',
-                price: 180,
-                desc: 'কয়লার আগুনে পোড়ানো মশলাদার ও জ্যুস চিকেন বারবিকিউ।',
-                image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80'
-            },
-            {
-                id: 4,
-                name: 'চিজি পিৎজা',
-                price: 450,
-                desc: 'অতিরিক্ত চিজ ও সুস্বাদু টপিংসে ঠাসা ৮ ইঞ্চি সাইজের হট পিৎজা।',
-                image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80'
-            },
-            {
-                id: 5,
-                name: 'জুসি বার্গার',
-                price: 160,
-                desc: 'নরম বান, সস এবং ডাবল চিকেন প্যাটি সমৃদ্ধ স্পেশাল বার্গার।',
-                image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80'
-            },
-            {
-                id: 6,
-                name: 'স্পেশাল মিষ্টি লাচ্ছি',
-                price: 90,
-                desc: 'ঘন দই, বাদাম এবং পেস্তার মিশ্রণে তৈরি রিফ্রেশিং ঠাণ্ডা লাচ্ছি।',
-                image: 'https://images.unsplash.com/photo-1571006682888-29a399436d40?auto=format&fit=crop&w=600&q=80'
-            }
-        ];
-
-        // Complete 64 Districts Structure with Cascading Upazilas, Unions & Villages
-        const locationData = {
-            "ঢাকা": {
-                "ধানমন্ডি": {
-                    "ধানমন্ডি ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২", "গ্রাম ৩"],
-                    "ধানমন্ডি ইউনিয়ন ২": ["গ্রাম ৪", "গ্রাম ৫"]
-                },
-                "মিরপুর": {
-                    "মিরপুর ইউনিয়ন ১": ["গ্রাম এ", "গ্রাম বি"],
-                    "মিরপুর ইউনিয়ন ২": ["গ্রাম সি", "গ্রাম ডি"]
-                },
-                "উত্তরা": {
-                    "উত্তরা উত্তর": ["গ্রাম এক্স", "গ্রাম ওয়াই"],
-                    "উত্তরা দক্ষিণ": ["গ্রাম জেড"]
-                }
-            },
-            "গাজীপুর": {
-                "সদর": {
-                    "জয়দেবপুর": ["গ্রাম ১", "গ্রাম ২"],
-                    "কাউয়ালতি": ["গ্রাম ৩", "গ্রাম ৪"]
-                },
-                "কালিয়াকৈর": {
-                    "মৌচাক": ["গ্রাম ৫", "গ্রাম ৬"]
-                }
-            },
-            "চট্টগ্রাম": {
-                "পটিয়া": {
-                    "পটিয়া ইউনিয়ন ১": ["গ্রাম প১", "গ্রাম প২"],
-                    "পটিয়া ইউনিয়ন ২": ["গ্রাম প৩", "গ্রাম প৪"]
-                },
-                "হরিপুর": {
-                    "হরিপুর ইউনিয়ন ১": ["গ্রাম এইচ১", "গ্রাম এইচ২"]
-                }
-            },
-            "সিলেট": {
-                "সদর": {
-                    "খাদিমনগর": ["গ্রাম ১", "গ্রাম ২"]
-                }
-            },
-            "রাজশাহী": {
-                "পবা": {
-                    "হরিপুর": ["গ্রাম ১", "গ্রাম ২"]
-                }
-            },
-            "খুলনা": {
-                "রূপসা": {
-                    "আইচগাতী": ["গ্রাম ১", "গ্রাম ২"]
-                }
-            },
-            "বরিশাল": {
-                "সদর": {
-                    "রায়পাশা কড়াপুর": ["গ্রাম ১", "গ্রাম ২"]
-                }
-            },
-            "রংপুর": {
-                "সদর": {
-                    "মমিনপুর": ["গ্রাম ১", "গ্রাম ২"]
-                }
-            },
-            "ময়মনসিংহ": {
-                "সদর": {
-                    "দাঁতিকাপুড়া": ["গ্রাম ১", "গ্রাম ২"]
-                }
-            },
-            // Fallback templates for remaining districts to ensure full 64 coverage
-            "নারায়ণগঞ্জ": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "মুন্সীগঞ্জ": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "মানিকগঞ্জ": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "নরসিংদী": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "ফরিদপুর": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "গোপালগঞ্জ": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "মাদারীপুর": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "রাজবাড়ী": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "শরীয়তপুর": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "টাঙ্গাইল": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "কিশোরগঞ্জ": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "কুমিল্লা": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "ফেনী": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "ব্রাহ্মণবাড়িয়া": {"সদর": {"ইউনিয়ন ১": ["গ্রাম ১", "গ্রাম ২"]}},
-            "নোয়াখালী": {"সদর": {"ইউনিয়
+    <!-- ==========================================
+         PRODUCT DETAILS MODAL
+         ========================================== -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('detailsModal')">&times;</span>
+            <img src="" id="modalImg" class="modal-img" alt="Product Image">
+            <div class="modal-body">
+                <h3 id="modalTitle">পণ্যের নাম</h3>
+                <div class="product-price" id="modalPrice">৳ 0</div>
+                
+                <div class="section-heading"><i class="fa-solid fa-list-check"></i> পণ্যের উপাদান:</div>
+                <p id="modalIngredients">উপাদান সম্পর্কিত তথ্য...</p>
+                
+                <div class="section-heading"><i class="fa-solid fa-star"></i> পণ্যের গুনাগুণ ও বৈশিষ্ট্য:</div>
+                <p id="modalBenefits">গুণাগুণ সম্পর্কিত তথ্য...</p>
+                
+                <div style="margin-top: 25px;">
+                    <button class="btn btn-primary" style="width: 100%;" id="secondaryOrderBtn">
+                        <i cla
