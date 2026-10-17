@@ -3,386 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>হারুন অর রশিদ এর কফি শপ | Harun Ur Rashid's Coffee Shop</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>হারুন অর রশিদ এর কফি শপ</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ==========================================
-           1. CSS VARIABLES & BASE STYLES
-           ========================================== */
-        :root {
-            --primary-color: #6F4E37; /* Coffee Brown */
-            --primary-hover: #523824;
-            --accent-color: #D4A373;  /* Warm Gold/Amber */
-            --bg-light: #FAEDCD;      /* Warm Cream */
-            --bg-dark: #1E1B18;       /* Dark Espresso */
-            --text-dark: #2B2D42;
-            --text-light: #F8F9FA;
-            --card-bg: #FFFFFF;
-            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
-            --transition: all 0.3s ease;
-            --font-main: 'Hind Siliguri', 'Poppins', sans-serif;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: var(--font-main);
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Hind Siliguri', sans-serif;
         }
 
         body {
-            background-color: #FDFBF7;
-            color: var(--text-dark);
-            line-height: 1.6;
+            background-color: #FAF6F0;
+            color: #333;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        /* Navigation Bar */
+        header {
+            background-color: #2C1810;
+            color: #F4EAE1;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        ul {
-            list-style: none;
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #D4A373;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px 15px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin: 20px 0 15px;
+            color: #6F4E37;
+            font-size: 1.8rem;
         }
 
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
+        /* Category Filter Buttons */
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 8px;
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
+            margin-bottom: 25px;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: var(--accent-color);
-            color: var(--text-dark);
-        }
-
-        .btn-secondary:hover {
-            background-color: #c08e5e;
-            transform: translateY(-2px);
-        }
-
-        /* ==========================================
-           2. HEADER & NAVIGATION
-           ========================================== */
-        header {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 75px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        /* ==========================================
-           3. HERO SECTION
-           ========================================== */
-        .hero {
-            background: linear-gradient(rgba(30, 27, 24, 0.75), rgba(30, 27, 24, 0.75)), 
-                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-            height: 80vh;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .hero-description {
-            font-size: 1.15rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        /* ==========================================
-           4. MENU SECTION
-           ========================================== */
-        .menu-section {
-            padding: 80px 0;
-        }
-
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-
-        .tab-btn {
-            padding: 8px 20px;
-            border-radius: 25px;
-            border: 2px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
+        .cat-btn {
+            background-color: #FFF;
+            border: 2px solid #6F4E37;
+            color: #6F4E37;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
+            font-size: 0.9rem;
         }
 
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--text-light);
+        .cat-btn.active, .cat-btn:hover {
+            background-color: #6F4E37;
+            color: #FFF;
         }
 
+        /* Product Grid & Cards */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
-            background-color: var(--card-bg);
+            background: #FFF;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid #EAEAEA;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid #E6D7C3;
             display: flex;
             flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            text-align: center;
         }
 
         .product-img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
         }
 
-        .product-info {
-            padding: 20px;
+        .product-details {
+            padding: 15px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
-        .product-title {
-            font-size: 1.25rem;
-            color: var(--text-dark);
-            margin-bottom: 8px;
+        .product-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2C1810;
+            margin-bottom: 5px;
         }
 
         .product-price {
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #C0392B;
             margin-bottom: 15px;
         }
 
-        .product-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .product-actions .btn {
-            flex: 1;
-            padding: 8px 12px;
-            font-size: 0.85rem;
-        }
-
-        /* ==========================================
-           5. CONTACT SECTION & FOOTER
-           ========================================== */
-        .contact-section {
-            background-color: var(--bg-light);
-            padding: 80px 0;
-        }
-
-        .contact-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-        }
-
-        .owner-details {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #EAEAEA;
-        }
-
-        .owner-details h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .owner-details p {
-            color: #666;
+        .order-btn {
+            background-color: #27AE60;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-        }
-
-        .contact-buttons {
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: auto;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 8px;
+            transition: 0.2s;
         }
 
-        .contact-btn {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            min-width: 240px;
+        .order-btn:hover {
+            background-color: #219150;
         }
 
-        .btn-phone {
-            background-color: #25D366;
-            color: white;
-        }
-
-        .btn-phone:hover {
-            background-color: #1DA851;
-        }
-
-        .btn-whatsapp {
-            background-color: #128C7E;
-            color: white;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #0B665C;
-        }
-
-        footer {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            text-align: center;
-            padding: 25px 0;
-            font-size: 0.95rem;
-        }
-
-        /* ==========================================
-           6. MODALS (PRODUCT DETAILS & ORDER FORM)
-           ========================================== */
+        /* Order Form Modal */
         .modal {
             display: none;
             position: fixed;
@@ -390,12 +157,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 2000;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            overflow-y: auto;
+            padding: 15px;
         }
 
         .modal.active {
@@ -403,272 +169,305 @@
         }
 
         .modal-content {
-            background-color: var(--card-bg);
+            background: #FFF;
             border-radius: 12px;
-            max-width: 550px;
             width: 100%;
+            max-width: 500px;
+            padding: 25px;
             position: relative;
-            padding: 30px;
-            box-shadow: var(--shadow-lg);
-            animation: modalFade 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
         }
 
-        @keyframes modalFade {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .close-modal {
+        .close-btn {
             position: absolute;
             top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #888;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            color: var(--text-dark);
-        }
-
-        /* Product Details Modal Content */
-        .modal-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .modal-body h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            right: 15px;
             font-size: 1.4rem;
+            cursor: pointer;
+            color: #777;
         }
 
-        .modal-body .section-heading {
-            font-weight: 700;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            color: var(--text-dark);
-        }
-
-        .modal-body p {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        /* Form Styles */
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             text-align: left;
         }
 
         .form-group label {
             display: block;
             font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-dark);
+            margin-bottom: 5px;
+            color: #2C1810;
             font-size: 0.95rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px 14px;
+            padding: 10px;
             border: 1px solid #CCC;
             border-radius: 6px;
             font-size: 0.95rem;
-            transition: var(--transition);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.2);
+            border-color: #6F4E37;
         }
 
-        /* Order Confirmation View */
-        .confirmation-view {
+        /* Confirmation View */
+        .confirm-box {
             text-align: center;
             padding: 20px 10px;
         }
 
-        .confirmation-icon {
+        .confirm-box i {
             font-size: 3.5rem;
-            color: #25D366;
-            margin-bottom: 15px;
-        }
-
-        .confirmation-text {
-            font-size: 1.15rem;
-            color: var(--text-dark);
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-
-        /* ==========================================
-           7. RESPONSIVE MEDIA QUERIES
-           ========================================== */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg-dark);
-                flex-direction: column;
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: var(--shadow-sm);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero-title {
-                font-size: 2.2rem;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-            }
-
-            .contact-btn {
-                width: 100%;
-            }
+            color: #27AE60;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================
-         HEADER & NAVIGATION
-         ========================================== -->
+    <!-- Header Navigation -->
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#home" class="logo">
-                    <i class="fa-solid font-awesome-logo-full fa-mug-hot"></i>
-                    <span>হারুন অর রশিদ এর কফি শপ</span>
-                </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" onclick="toggleNav()">হোম</a></li>
-                    <li><a href="#menu" onclick="toggleNav()">মাই মেনু</a></li>
-                    <li><a href="#contact" onclick="toggleNav()">যোগাযোগ করুন</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger" onclick="toggleNav()">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-            </nav>
+        <div class="logo">
+            <i class="fa-solid fa-mug-hot"></i>
+            <span>হারুন অর রশিদ এর কফি শপ</span>
         </div>
     </header>
 
-    <!-- ==========================================
-         HERO SECTION
-         ========================================== -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-subtitle">স্বাদ ও গুণমানের অনন্য মেলবন্ধন</div>
-                <h1 class="hero-title">হারুন অর রশিদ এর কফি শপে আপনাকে স্বাগতম</h1>
-                <p class="hero-description">সেরা ফ্রেশ কফি, সুস্বাদু বিরিয়ানি এবং ফাস্ট ফুডের স্বাদ নিতে এখনই আমাদের মেনু ভিজিট করুন এবং অর্ডার করুন।</p>
-                <a href="#menu" class="btn btn-primary" style="padding: 12px 30px; font-size: 1.1rem;">
-                    <i class="fa-solid fa-utensils"></i> মেনু দেখুন
-                </a>
-            </div>
+    <!-- Main Menu Area -->
+    <div class="container">
+        <h2 class="section-title">মাই মেনু (My Menu)</h2>
+
+        <!-- Category Buttons -->
+        <div class="category-container">
+            <button class="cat-btn active" onclick="filterCategory('all')">সব আইটেম</button>
+            <button class="cat-btn" onclick="filterCategory('hot-coffee')">হট কফি</button>
+            <button class="cat-btn" onclick="filterCategory('cold-coffee')">কোল্ড কফি</button>
+            <button class="cat-btn" onclick="filterCategory('lassi')">লাচ্ছি</button>
+            <button class="cat-btn" onclick="filterCategory('pasta')">পাস্তা</button>
+            <button class="cat-btn" onclick="filterCategory('biryani')">বিরিয়ানি</button>
+            <button class="cat-btn" onclick="filterCategory('fast-food')">ফাস্ট ফুড</button>
         </div>
-    </section>
 
-    <!-- ==========================================
-         MENU SECTION ("MY MENU")
-         ========================================== -->
-    <section class="menu-section" id="menu">
-        <div class="container">
-            <div class="section-title">
-                <h2>মাই মেনু (My Menu)</h2>
-            </div>
-
-            <!-- Category Filter Tabs -->
-            <div class="category-tabs">
-                <button class="tab-btn active" onclick="filterCategory('all')">সব আইটেম</button>
-                <button class="tab-btn" onclick="filterCategory('hot-coffee')">হট কফি</button>
-                <button class="tab-btn" onclick="filterCategory('cold-coffee')">কোল্ড কফি</button>
-                <button class="tab-btn" onclick="filterCategory('lassi')">লাচ্ছি</button>
-                <button class="tab-btn" onclick="filterCategory('pasta')">পাস্তা</button>
-                <button class="tab-btn" onclick="filterCategory('biryani')">বিরিয়ানি</button>
-                <button class="tab-btn" onclick="filterCategory('fast-food')">ফাস্ট ফুড</button>
-            </div>
-
-            <!-- Product Items Grid -->
-            <div class="product-grid" id="productGrid">
-                <!-- Products dynamically rendered by JavaScript -->
-            </div>
+        <!-- Product Cards Container -->
+        <div class="product-grid" id="productGrid">
+            <!-- JavaScript rendering products here -->
         </div>
-    </section>
+    </div>
 
-    <!-- ==========================================
-         CONTACT SECTION
-         ========================================== -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>যোগাযোগ করুন</h2>
-            </div>
-            <div class="contact-card">
-                <div class="owner-details">
-                    <h3>হারুন অর রশিদ এর কফি শপ</h3>
-                    <p><i class="fa-solid fa-location-dot"></i> গ্রাম: হাকরইল, উপজেলা: নাচোল, জেলা: চাঁপাইনবাবগঞ্জ</p>
-                </div>
-                <div class="contact-buttons">
-                    <!-- Option 1: Direct Phone Call -->
-                    <a href="tel:01706712866" class="btn contact-btn btn-phone">
-                        <i class="fa-solid fa-phone"></i> ফোন করুন (01706712866)
-                    </a>
-                    <!-- Option 2: Direct WhatsApp Chat -->
-                    <a href="https://wa.me/8801706712866" target="_blank" class="btn contact-btn btn-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> প্রয়োজনে চ্যাট করুন
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         FOOTER
-         ========================================== -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 হারুন অর রশিদ এর কফি শপ। সর্বস্বত্ব সংরক্ষিত।</p>
-        </div>
-    </footer>
-
-    <!-- ==========================================
-         PRODUCT DETAILS MODAL
-         ========================================== -->
-    <div class="modal" id="detailsModal">
+    <!-- Order Form Popup Modal -->
+    <div class="modal" id="orderModal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('detailsModal')">&times;</span>
-            <img src="" id="modalImg" class="modal-img" alt="Product Image">
-            <div class="modal-body">
-                <h3 id="modalTitle">পণ্যের নাম</h3>
-                <div class="product-price" id="modalPrice">৳ 0</div>
-                
-                <div class="section-heading"><i class="fa-solid fa-list-check"></i> পণ্যের উপাদান:</div>
-                <p id="modalIngredients">উপাদান সম্পর্কিত তথ্য...</p>
-                
-                <div class="section-heading"><i class="fa-solid fa-star"></i> পণ্যের গুনাগুণ ও বৈশিষ্ট্য:</div>
-                <p id="modalBenefits">গুণাগুণ সম্পর্কিত তথ্য...</p>
-                
-                <div style="margin-top: 25px;">
-                    <button class="btn btn-primary" style="width: 100%;" id="secondaryOrderBtn">
-                        <i cla
+            <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+            
+            <div id="formSection">
+                <h3 style="color: #6F4E37; text-align: center; margin-bottom: 15px;">অর্ডার ফর্ম</h3>
+                <form id="orderForm" onsubmit="submitOrder(event)">
+                    
+                    <div class="form-group">
+                        <label>পণ্য:</label>
+                        <input type="text" id="selectedProduct" class="form-control" readonly style="background: #F0F0F0; font-weight: bold;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>গ্রাহকের নাম: *</label>
+                        <input type="text" required class="form-control" placeholder="আপনার নাম লিখুন">
+                    </div>
+
+                    <div class="form-group">
+                        <label>মোবাইল নম্বর: *</label>
+                        <input type="tel" required class="form-control" placeholder="01XXXXXXXXX">
+                    </div>
+
+                    <!-- 1. District Selection Dropdown -->
+                    <div class="form-group">
+                        <label for="districtSelect">জেলা নির্বাচন করুন: *</label>
+                        <select id="districtSelect" class="form-control" required onchange="loadUpazilas()">
+                            <option value="">জেলা নির্বাচন করুন</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. Upazila Selection Dropdown -->
+                    <div class="form-group">
+                        <label for="upazilaSelect">উপজেলা নির্বাচন করুন: *</label>
+                        <select id="upazilaSelect" class="form-control" required disabled>
+                            <option value="">প্রথমে জেলা নির্বাচন করুন</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. Village Manual Typing Field -->
+                    <div class="form-group">
+                        <label>গ্রামের নাম (টাইপ করুন): *</label>
+                        <input type="text" required class="form-control" placeholder="আপনার গ্রামের নাম লিখুন">
+                    </div>
+
+                    <!-- 4. Delivery Place/Address Manual Typing Field -->
+                    <div class="form-group">
+                        <label>পণ্য পাওয়ার জায়গা / ঠিকানা (টাইপ করুন): *</label>
+                        <input type="text" required class="form-control" placeholder="যেমন: বাজার, মোড় বা বাড়ির নম্বর">
+                    </div>
+
+                    <button type="submit" class="order-btn" style="margin-top: 15px;">
+                        <i class="fa-solid fa-check-circle"></i> অর্ডার নিশ্চিত করুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Success Confirmation Message -->
+            <div id="successSection" class="confirm-box" style="display: none;">
+                <i class="fa-solid fa-circle-check"></i>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #2C1810; margin-bottom: 15px;">
+                    আপনার অর্ডারটি কনফার্ম করা হয়েছে, অতি শীঘ্রই আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবে। আপনার অর্ডারের জন্য আপনাকে ধন্যবাদ।
+                </p>
+                <button class="order-btn" onclick="closeOrderModal()">ঠিক আছে</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================
+           1. PRODUCTS DATA (With Pictures & Pricing)
+           ========================================== */
+        const productsList = [
+            { id: 1, category: 'hot-coffee', name: 'এসপ্রেসো হট কফি', price: 120, img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=500&q=80' },
+            { id: 2, category: 'hot-coffee', name: 'ক্যাপুচিনো কফি', price: 180, img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&q=80' },
+            { id: 3, category: 'cold-coffee', name: 'আইসড কোল্ড কফি', price: 200, img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80' },
+            { id: 4, category: 'cold-coffee', name: 'চকলেট কোল্ড কফি', price: 220, img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80' },
+            { id: 5, category: 'lassi', name: 'স্পেশাল দই লাচ্ছি', price: 100, img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80' },
+            { id: 6, category: 'pasta', name: 'চিকেন হোয়াইট সস পাস্তা', price: 250, img: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281288?w=500&q=80' },
+            { id: 7, category: 'biryani', name: 'চিকেন বিরিয়ানি', price: 220, img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500&q=80' },
+            { id: 8, category: 'biryani', name: 'কাচ্চি বিরিয়ানি', price: 320, img: 'https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500&q=80' },
+            { id: 9, category: 'fast-food', name: 'চিকেন বার্গার', price: 160, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80' },
+            { id: 10, category: 'fast-food', name: 'চীজি চিজ পিজ্জা', price: 450, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80' }
+        ];
+
+        /* ==========================================
+           2. BANGLADESH 64 DISTRICTS & UPAZILAS
+           ========================================== */
+        const locationMap = {
+            "চাঁপাইনবাবগঞ্জ": ["নাচোল", "ভোলাহাট", "সদর", "শিবগঞ্জ", "গোমস্তাপুর"],
+            "রাজশাহী": ["পবা", "বোয়ালিয়া", "বাঘা", "পুতীয়াসাদ", "চারঘাট", "দুর্গাপুর", "তানোর", "মোহনপুর", "গোদাগাড়ী"],
+            "ঢাকা": ["ধানমন্ডি", "মিরপুর", "উত্তরা", "গুলশান", "সাবার", "কেরানীগঞ্জ", "মোহাম্মদপুর"],
+            "চট্টগ্রাম": ["পাহাড়তলী", "পাঁচলাইশ", "পটিয়া", "হাটহাজারী", "সীতাকুণ্ড"],
+            "বগুড়া": ["বগুড়া সদর", "শেরপুর", "শিবগঞ্জ", "দুপচাঁচিয়া"],
+            "সিলেট": ["সিলেট সদর", "শ্রীমঙ্গল", "গোলাপগঞ্জ"]
+        };
+
+        // Populate standard 64 districts
+        const allBDDistricts = [
+            "গাজীপুর", "নারায়ণগঞ্জ", "টাঙ্গাইল", "কিশোরগঞ্জ", "মানিকগঞ্জ", "মুন্সীগঞ্জ", "নরসিংদী", "ফরিদপুর", "গোপালগঞ্জ", "মাদারীপুর", "রাজবাড়ী", "শরীয়তপুর",
+            "কুমিল্লা", "ফেনী", "ব্রাহ্মণবাড়িয়া", "নোয়াখালী", "লক্ষ্মীপুর", "চাঁদপুর", "কক্সবাজার", "রাঙ্গামাটি", "বান্দরবান", "খাগড়াছড়ি",
+            "খুলনা", "যশোর", "সাতক্ষীরা", "বাগেরহাট", "ঝিনাইদহ", "কুষ্টিয়া", "মাগুরা", "মেহেরপুর", "নড়াইল", "চুয়াডাঙ্গা",
+            "পাবনা", "সিরাজগঞ্জ", "নাটোর", "নওগাঁ", "জয়পুরহাট",
+            "বরিশাল", "পটুয়াখালী", "ভোলা", "পিরোজপুর", "বরগুনা", "ঝালকাঠি",
+            "রংপুর", "দিনাজপুর", "গাইবান্ধা", "কুড়িগ্রাম", "লালমনিরহাট", "নীলফামারী", "পঞ্চগড়", "ঠাকুরগাঁও",
+            "মৌলভীবাজার", "হবিগঞ্জ", "সুনামগঞ্জ", "ময়মনসিংহ", "জামালপুর", "নেত্রকোনা", "শেরপুর"
+        ];
+
+        allBDDistricts.forEach(d => {
+            if (!locationMap[d]) {
+                locationMap[d] = [d + " সদর", "উপজেলা ১", "উপজেলা ২"];
+            }
+        });
+
+        /* ==========================================
+           3. DISPLAY PRODUCTS & LOGIC
+           ========================================== */
+        window.onload = function() {
+            displayProducts(productsList);
+            initDistricts();
+        };
+
+        function displayProducts(items) {
+            const container = document.getElementById('productGrid');
+            container.innerHTML = '';
+
+            items.forEach(p => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        <img src="${p.img}" class="product-img" alt="${p.name}">
+                        <div class="product-details">
+                            <div class="product-name">${p.name}</div>
+                            <div class="product-price">৳ ${p.price}</div>
+                            <button class="order-btn" onclick="openOrderModal('${p.name}')">
+                                <i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterCategory(cat) {
+            // Update button styles
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (cat === 'all') {
+                displayProducts(productsList);
+            } else {
+                const filtered = productsList.filter(item => item.category === cat);
+                displayProducts(filtered);
+            }
+        }
+
+        /* ==========================================
+           4. FORM & MODAL LOGIC
+           ========================================== */
+        function openOrderModal(productName) {
+            document.getElementById('selectedProduct').value = productName;
+            document.getElementById('orderForm').reset();
+            document.getElementById('formSection').style.display = 'block';
+            document.getElementById('successSection').style.display = 'none';
+            document.getElementById('upazilaSelect').disabled = true;
+            document.getElementById('upazilaSelect').innerHTML = '<option value="">প্রথমে জেলা নির্বাচন করুন</option>';
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        function initDistricts() {
+            const distSelect = document.getElementById('districtSelect');
+            const sortedDistricts = Object.keys(locationMap).sort((a, b) => a.localeCompare(b, 'bn'));
+
+            sortedDistricts.forEach(dist => {
+                const opt = document.createElement('option');
+                opt.value = dist;
+                opt.textContent = dist;
+                distSelect.appendChild(opt);
+            });
+        }
+
+        function loadUpazilas() {
+            const distSelect = document.getElementById('districtSelect').value;
+            const upazilaSelect = document.getElementById('upazilaSelect');
+
+            upazilaSelect.innerHTML = '<option value="">উপজেলা নির্বাচন করুন</option>';
+
+            if (distSelect && locationMap[distSelect]) {
+                upazilaSelect.disabled = false;
+                locationMap[distSelect].forEach(up => {
+                    const opt = document.createElement('option');
+                    opt.value = up;
+                    opt.textContent = up;
+                    upazilaSelect.appendChild(opt);
+                });
+            } else {
+                upazilaSelect.disabled = true;
+                upazilaSelect.innerHTML = '<option value="">প্রথমে জেলা নির্বাচন করুন</option>';
+            }
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('successSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
