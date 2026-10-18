@@ -594,4 +594,84 @@
                 image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80'
             },
             {
-  
+  function openDetailsModal(id) {
+            selectedProduct = products.find(p => p.id === id);
+            document.getElementById('modal-img').src = selectedProduct.image;
+            document.getElementById('modal-title').textContent = selectedProduct.name;
+            document.getElementById('modal-price').textContent = `৳ ${selectedProduct.price}`;
+            document.getElementById('modal-desc').textContent = selectedProduct.desc;
+
+            const waMsg = encodeURIComponent(`হ্যালো, আমি "হারুনের কফি শপ" থেকে ${selectedProduct.name} (দাম: ৳${selectedProduct.price}) অর্ডার করতে চাই।`);
+            document.getElementById('modal-whatsapp-btn').onclick = () => {
+                window.open(`https://wa.me/${OWNER_PHONE}?text=${waMsg}`, '_blank');
+            };
+
+            document.getElementById('details-modal').style.display = 'flex';
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('details-modal').style.display = 'none';
+        }
+
+        function openCheckoutFromModal() {
+            closeDetailsModal();
+            openCheckoutModal();
+        }
+
+        function openCheckoutDirect(id) {
+            selectedProduct = products.find(p => p.id === id);
+            openCheckoutModal();
+        }
+
+        function openCheckoutModal() {
+            document.getElementById('checkout-item-title').textContent = `আইটেম: ${selectedProduct.name} - ৳${selectedProduct.price}`;
+            document.getElementById('checkout-modal').style.display = 'flex';
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const dist = document.getElementById('district-select').value;
+            const upa = document.getElementById('upazila-select').value;
+            const uni = document.getElementById('union-select').value;
+            const vil = document.getElementById('village-select').value;
+            const addr = document.getElementById('cust-address').value;
+
+            const orderMessage = `*নতুন অর্ডার তথ্য:*
+--------------------------
+*আইটেম:* ${selectedProduct.name}
+*মূল্য:* ৳${selectedProduct.price}
+*গ্রাহকের নাম:* ${name}
+*মোবাইল:* ${phone}
+*জেলা:* ${dist}
+*উপজেলা:* ${upa}
+*ইউনিয়ন:* ${uni}
+*গ্রাম:* ${vil}
+*বিস্তারিত ঠিকানা:* ${addr}`;
+
+            const encodedMsg = encodeURIComponent(orderMessage);
+            window.open(`https://wa.me/${OWNER_PHONE}?text=${encodedMsg}`, '_blank');
+
+            alert('ধন্যবাদ! আপনার অর্ডার তথ্য প্রক্রিয়াকরণের জন্য হোয়াটসঅ্যাপে পাঠানো হচ্ছে।');
+            closeCheckoutModal();
+        }
+
+        window.onclick = function(event) {
+            const detModal = document.getElementById('details-modal');
+            const chkModal = document.getElementById('checkout-modal');
+            if (event.target === detModal) closeDetailsModal();
+            if (event.target === chkModal) closeCheckoutModal();
+        };
+
+        window.onload = function() {
+            renderProducts();
+            initDistrictDropdown();
+        };
+    </script>
+</body>
+</html>
