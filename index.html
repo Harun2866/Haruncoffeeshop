@@ -3,153 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>হারুন অর রশিদ এর কফি শপ</title>
-    <!-- Font Awesome & Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>হারুনের কফি শপ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
+        :root {
+            --primary-color: #6f4e37;
+            --primary-hover: #583e2e;
+            --secondary-color: #25d366;
+            --bg-color: #f4f1ea;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #666666;
+            --border-color: #e0e0e0;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #FAF6F0;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        /* Navigation Bar */
+        /* Header & Nav */
         header {
-            background-color: #2C1810;
-            color: #F4EAE1;
-            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #D4A373;
+            font-size: 1.4rem;
+            font-weight: bold;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px 15px;
+        nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
         }
 
-        .section-title {
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero / Owner Section */
+        .hero {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
-            margin: 20px 0 15px;
-            color: #6F4E37;
+            flex-direction: column;
+        }
+
+        .hero-img-wrapper {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
             font-size: 1.8rem;
         }
 
-        /* Category Filter Buttons */
-        .category-container {
+        .hero-content h3 {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Filter Buttons */
+        .category-filters {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
-        .cat-btn {
-            background-color: #FFF;
-            border: 2px solid #6F4E37;
-            color: #6F4E37;
-            padding: 6px 14px;
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 600;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .cat-btn.active, .cat-btn:hover {
-            background-color: #6F4E37;
-            color: #FFF;
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
-        /* Product Grid & Cards */
-        .product-grid {
+        /* Menu Grid */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .product-card {
-            background: #FFF;
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            border: 1px solid #E6D7C3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
-            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .product-img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
+            cursor: pointer;
         }
 
-        .product-details {
-            padding: 15px;
+        .product-info {
+            padding: 1.2rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
-        .product-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #2C1810;
-            margin-bottom: 5px;
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-color);
+        }
+
+        .product-desc {
+            color: var(--light-text);
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
         }
 
         .product-price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #C0392B;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
-        .order-btn {
-            background-color: #27AE60;
+        .card-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            background: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
+            padding: 0.65rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
             cursor: pointer;
-            width: 100%;
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: 0.2s;
+            flex: 1;
+            text-align: center;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
         }
 
-        .order-btn:hover {
-            background-color: #219150;
+        .btn:hover {
+            background: var(--primary-hover);
         }
 
-        /* Order Form Modal */
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--secondary-color);
+            margin-top: 0.5rem;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1eb956;
+        }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -158,316 +282,316 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            align-items: center;
+            z-index: 2000;
             justify-content: center;
-            padding: 15px;
-        }
-
-        .modal.active {
-            display: flex;
+            align-items: center;
+            padding: 1rem;
         }
 
         .modal-content {
-            background: #FFF;
+            background: var(--card-bg);
             border-radius: 12px;
+            max-width: 550px;
             width: 100%;
-            max-width: 500px;
-            padding: 25px;
+            padding: 1.5rem;
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
         }
 
-        .close-btn {
+        .close-modal {
             position: absolute;
-            top: 15px;
+            top: 10px;
             right: 15px;
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            color: #777;
+            color: #888;
         }
 
+        .modal-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Controls */
         .form-group {
-            margin-bottom: 12px;
-            text-align: left;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
             display: block;
+            margin-bottom: 0.3rem;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: #2C1810;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #CCC;
+            padding: 0.65rem;
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             font-size: 0.95rem;
         }
 
-        .form-control:focus {
-            outline: none;
-            border-color: #6F4E37;
+        /* Contact Section */
+        .contact-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Confirmation View */
-        .confirm-box {
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-around;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
             text-align: center;
-            padding: 20px 10px;
+            padding: 1.2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
         }
 
-        .confirm-box i {
-            font-size: 3.5rem;
-            color: #27AE60;
-            margin-bottom: 10px;
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                text-align: left;
+            }
+            header {
+                padding: 1rem 2rem;
+            }
+            nav {
+                margin-top: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="logo">
-            <i class="fa-solid fa-mug-hot"></i>
-            <span>হারুন অর রশিদ এর কফি শপ</span>
+            <i class="fas fa-mug-hot"></i> হারুনের কফি শপ
         </div>
+        <nav>
+            <a href="#home">হোম</a>
+            <a href="#menu-section">মেনু</a>
+            <a href="#contact-section">যোগাযোগ</a>
+        </nav>
     </header>
 
-    <!-- Main Menu Area -->
-    <div class="container">
-        <h2 class="section-title">মাই মেনু (My Menu)</h2>
+    <div class="container" id="home">
+        <!-- Hero / Owner Section -->
+        <section class="hero">
+            <div class="hero-img-wrapper">
+                <img src="1000082357.jpg" alt="মোহাম্মদ হারুন অর রশিদ" class="hero-img" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png';">
+            </div>
+            <div class="hero-content">
+                <h1>স্বাগতম, হারুনের কফি শপ-এ!</h1>
+                <h3>স্বত্বাধিকারী: মোহাম্মদ হারুন অর রশিদ</h3>
+                <p>আমরা আপনাকে দিচ্ছি তাজা সুবাসিত কফি, সুস্বাদু চিকেন বিরিয়ানি, বারবিকিউ, স্পেশাল পিৎজা, জ্যুসি বার্গার এবং রিফ্রেশিং মিষ্টি লাচ্ছি। চমৎকার স্বাদের সাথে আপনার খাবার ডেলিভারি পেতে আজই অর্ডার করুন।</p>
+                <a href="#menu-section" class="btn" style="width: auto; padding: 0.6rem 1.5rem; margin-top: 0.8rem;">মেনু দেখুন</a>
+            </div>
+        </section>
 
-        <!-- Category Buttons -->
-        <div class="category-container">
-            <button class="cat-btn active" onclick="filterCategory('all')">সব আইটেম</button>
-            <button class="cat-btn" onclick="filterCategory('hot-coffee')">হট কফি</button>
-            <button class="cat-btn" onclick="filterCategory('cold-coffee')">কোল্ড কফি</button>
-            <button class="cat-btn" onclick="filterCategory('lassi')">লাচ্ছি</button>
-            <button class="cat-btn" onclick="filterCategory('pasta')">পাস্তা</button>
-            <button class="cat-btn" onclick="filterCategory('biryani')">বিরিয়ানি</button>
-            <button class="cat-btn" onclick="filterCategory('fast-food')">ফাস্ট ফুড</button>
-        </div>
-
-        <!-- Product Cards Container -->
-        <div class="product-grid" id="productGrid">
-            <!-- JavaScript rendering products here -->
-        </div>
-    </div>
-
-    <!-- Order Form Popup Modal -->
-    <div class="modal" id="orderModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+        <!-- Menu Section -->
+        <section id="menu-section">
+            <h2 class="section-title">আমাদের মেনু</h2>
             
-            <div id="formSection">
-                <h3 style="color: #6F4E37; text-align: center; margin-bottom: 15px;">অর্ডার ফর্ম</h3>
-                <form id="orderForm" onsubmit="submitOrder(event)">
-                    
-                    <div class="form-group">
-                        <label>পণ্য:</label>
-                        <input type="text" id="selectedProduct" class="form-control" readonly style="background: #F0F0F0; font-weight: bold;">
-                    </div>
-
-                    <div class="form-group">
-                        <label>গ্রাহকের নাম: *</label>
-                        <input type="text" required class="form-control" placeholder="আপনার নাম লিখুন">
-                    </div>
-
-                    <div class="form-group">
-                        <label>মোবাইল নম্বর: *</label>
-                        <input type="tel" required class="form-control" placeholder="01XXXXXXXXX">
-                    </div>
-
-                    <!-- 1. District Selection Dropdown -->
-                    <div class="form-group">
-                        <label for="districtSelect">জেলা নির্বাচন করুন: *</label>
-                        <select id="districtSelect" class="form-control" required onchange="loadUpazilas()">
-                            <option value="">জেলা নির্বাচন করুন</option>
-                        </select>
-                    </div>
-
-                    <!-- 2. Upazila Selection Dropdown -->
-                    <div class="form-group">
-                        <label for="upazilaSelect">উপজেলা নির্বাচন করুন: *</label>
-                        <select id="upazilaSelect" class="form-control" required disabled>
-                            <option value="">প্রথমে জেলা নির্বাচন করুন</option>
-                        </select>
-                    </div>
-
-                    <!-- 3. Village Manual Typing Field -->
-                    <div class="form-group">
-                        <label>গ্রামের নাম (টাইপ করুন): *</label>
-                        <input type="text" required class="form-control" placeholder="আপনার গ্রামের নাম লিখুন">
-                    </div>
-
-                    <!-- 4. Delivery Place/Address Manual Typing Field -->
-                    <div class="form-group">
-                        <label>পণ্য পাওয়ার জায়গা / ঠিকানা (টাইপ করুন): *</label>
-                        <input type="text" required class="form-control" placeholder="যেমন: বাজার, মোড় বা বাড়ির নম্বর">
-                    </div>
-
-                    <button type="submit" class="order-btn" style="margin-top: 15px;">
-                        <i class="fa-solid fa-check-circle"></i> অর্ডার নিশ্চিত করুন
-                    </button>
-                </form>
+            <!-- Category Filter Buttons -->
+            <div class="category-filters">
+                <button class="filter-btn active" onclick="filterMenu('all', this)">সব আইটেম</button>
+                <button class="filter-btn" onclick="filterMenu('biryani', this)">বিরিয়ানি</button>
+                <button class="filter-btn" onclick="filterMenu('pizza', this)">পিৎজা</button>
+                <button class="filter-btn" onclick="filterMenu('burger', this)">বার্গার</button>
+                <button class="filter-btn" onclick="filterMenu('bbq', this)">বারবিকিউ</button>
+                <button class="filter-btn" onclick="filterMenu('coffee', this)">কফি</button>
+                <button class="filter-btn" onclick="filterMenu('lassi', this)">লাচ্ছি</button>
             </div>
 
-            <!-- Order Success Confirmation Message -->
-            <div id="successSection" class="confirm-box" style="display: none;">
-                <i class="fa-solid fa-circle-check"></i>
-                <p style="font-size: 1.1rem; line-height: 1.6; color: #2C1810; margin-bottom: 15px;">
-                    আপনার অর্ডারটি কনফার্ম করা হয়েছে, অতি শীঘ্রই আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবে। আপনার অর্ডারের জন্য আপনাকে ধন্যবাদ।
-                </p>
-                <button class="order-btn" onclick="closeOrderModal()">ঠিক আছে</button>
+            <!-- Product Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Products dynamically rendered here -->
             </div>
+        </section>
+
+        <!-- Quick Contact Section -->
+        <section class="contact-section" style="text-align: center; margin-top: 2rem;">
+            <h2 class="section-title">প্রয়োজনে যোগাযোগ করুন</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--light-text);">যেকোনো প্রয়োজনে আমাদের সাথে সরাসরি যোগাযোগ করতে নিচের বোতামগুলোতে ক্লিক করুন:</p>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="tel:01706712866" class="btn" style="background-color: var(--primary-color); max-width: 220px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-phone-alt"></i> কল করুন (01706712866)
+                </a>
+                <a href="https://wa.me/8801706712866" target="_blank" class="btn btn-whatsapp" style="max-width: 220px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপ চ্যাট
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="contact-section">
+            <h2 class="section-title">যোগাযোগের ঠিকানা</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <strong>স্বত্বাধিকারী:</strong>
+                        <div>মোহাম্মদ হারুন অর রশিদ</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>মোবাইল ও হোয়াটসঅ্যাপ:</strong>
+                        <div>01706712866</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>সরাসরি চ্যাট:</strong>
+                        <div><a href="https://wa.me/8801706712866" target="_blank" style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">হোয়াটসঅ্যাপে চ্যাট করুন</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="details-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDetailsModal()">&times;</span>
+            <img src="" id="modal-img" class="modal-img" alt="">
+            <h2 id="modal-title" style="margin-bottom: 0.4rem;"></h2>
+            <p id="modal-price" style="font-size: 1.25rem; color: var(--primary-color); font-weight: bold; margin-bottom: 0.8rem;"></p>
+            <p id="modal-desc" style="color: var(--light-text); margin-bottom: 1.2rem;"></p>
+            
+            <button class="btn" onclick="openCheckoutFromModal()">Order Now (অর্ডার করুন)</button>
+            <button class="btn btn-whatsapp" id="modal-whatsapp-btn"><i class="fab fa-whatsapp"></i> সরাসরি হোয়াটসঅ্যাপে অর্ডার করুন</button>
         </div>
     </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
+            <h2 style="margin-bottom: 0.8rem; color: var(--primary-color);">অর্ডার নিশ্চিতকরণ</h2>
+            <p id="checkout-item-title" style="font-weight: bold; margin-bottom: 1rem; color: var(--text-color);"></p>
+            
+            <form id="order-form" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label for="checkout-product-name">পণ্যের নাম</label>
+                    <input type="text" id="checkout-product-name" class="form-control" readonly style="background-color: #e9ecef; font-weight: bold;">
+                </div>
+
+                <div class="form-group">
+                    <label for="cust-name">গ্রাহকের নাম *</label>
+                    <input type="text" id="cust-name" class="form-control" required placeholder="আপনার নাম">
+                </div>
+
+                <div class="form-group">
+                    <label for="cust-phone">মোবাইল নম্বর *</label>
+                    <input type="tel" id="cust-phone" class="form-control" required placeholder="017XXXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="district-select">জেলা *</label>
+                    <select id="district-select" class="form-control" required onchange="onDistrictChange()">
+                        <option value="">জেলা নির্বাচন করুন</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="upazila-select">উপজেলা *</label>
+                    <select id="upazila-select" class="form-control" required onchange="onUpazilaChange()" disabled>
+                        <option value="">প্রথমে জেলা নির্বাচন করুন</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="union-select">ইউনিয়ন *</label>
+                    <select id="union-select" class="form-control" required onchange="onUnionChange()" disabled>
+                        <option value="">প্রথমে উপজেলা নির্বাচন করুন</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="village-select">গ্রাম *</label>
+                    <select id="village-select" class="form-control" required disabled>
+                        <option value="">প্রথমে ইউনিয়ন নির্বাচন করুন</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cust-address">বিস্তারিত ঠিকানা *</label>
+                    <textarea id="cust-address" class="form-control" rows="2" required placeholder="বাসা/রোড নম্বর বা ল্যান্ডমার্ক"></textarea>
+                </div>
+
+                <button type="submit" class="btn"><i class="fas fa-check-circle"></i> অর্ডার কনফার্ম করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; ২০২৬ হারুনের কফি শপ। স্বত্বাধিকারী: মোহাম্মদ হারুন অর রশিদ (01706712866)</p>
+    </footer>
 
     <script>
-        /* ==========================================
-           1. PRODUCTS DATA (With Pictures & Pricing)
-           ========================================== */
-        const productsList = [
-            { id: 1, category: 'hot-coffee', name: 'এসপ্রেসো হট কফি', price: 120, img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=500&q=80' },
-            { id: 2, category: 'hot-coffee', name: 'ক্যাপুচিনো কফি', price: 180, img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&q=80' },
-            { id: 3, category: 'cold-coffee', name: 'আইসড কোল্ড কফি', price: 200, img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80' },
-            { id: 4, category: 'cold-coffee', name: 'চকলেট কোল্ড কফি', price: 220, img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80' },
-            { id: 5, category: 'lassi', name: 'স্পেশাল দই লাচ্ছি', price: 100, img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80' },
-            { id: 6, category: 'pasta', name: 'চিকেন হোয়াইট সস পাস্তা', price: 250, img: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281288?w=500&q=80' },
-            { id: 7, category: 'biryani', name: 'চিকেন বিরিয়ানি', price: 220, img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500&q=80' },
-            { id: 8, category: 'biryani', name: 'কাচ্চি বিরিয়ানি', price: 320, img: 'https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500&q=80' },
-            { id: 9, category: 'fast-food', name: 'চিকেন বার্গার', price: 160, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80' },
-            { id: 10, category: 'fast-food', name: 'চীজি চিজ পিজ্জা', price: 450, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80' }
-        ];
+        const OWNER_PHONE = "8801706712866";
 
-        /* ==========================================
-           2. BANGLADESH 64 DISTRICTS & UPAZILAS
-           ========================================== */
-        const locationMap = {
-            "চাঁপাইনবাবগঞ্জ": ["নাচোল", "ভোলাহাট", "সদর", "শিবগঞ্জ", "গোমস্তাপুর"],
-            "রাজশাহী": ["পবা", "বোয়ালিয়া", "বাঘা", "পুতীয়াসাদ", "চারঘাট", "দুর্গাপুর", "তানোর", "মোহনপুর", "গোদাগাড়ী"],
-            "ঢাকা": ["ধানমন্ডি", "মিরপুর", "উত্তরা", "গুলশান", "সাবার", "কেরানীগঞ্জ", "মোহাম্মদপুর"],
-            "চট্টগ্রাম": ["পাহাড়তলী", "পাঁচলাইশ", "পটিয়া", "হাটহাজারী", "সীতাকুণ্ড"],
-            "বগুড়া": ["বগুড়া সদর", "শেরপুর", "শিবগঞ্জ", "দুপচাঁচিয়া"],
-            "সিলেট": ["সিলেট সদর", "শ্রীমঙ্গল", "গোলাপগঞ্জ"]
-        };
-
-        // Populate standard 64 districts
-        const allBDDistricts = [
-            "গাজীপুর", "নারায়ণগঞ্জ", "টাঙ্গাইল", "কিশোরগঞ্জ", "মানিকগঞ্জ", "মুন্সীগঞ্জ", "নরসিংদী", "ফরিদপুর", "গোপালগঞ্জ", "মাদারীপুর", "রাজবাড়ী", "শরীয়তপুর",
-            "কুমিল্লা", "ফেনী", "ব্রাহ্মণবাড়িয়া", "নোয়াখালী", "লক্ষ্মীপুর", "চাঁদপুর", "কক্সবাজার", "রাঙ্গামাটি", "বান্দরবান", "খাগড়াছড়ি",
-            "খুলনা", "যশোর", "সাতক্ষীরা", "বাগেরহাট", "ঝিনাইদহ", "কুষ্টিয়া", "মাগুরা", "মেহেরপুর", "নড়াইল", "চুয়াডাঙ্গা",
-            "পাবনা", "সিরাজগঞ্জ", "নাটোর", "নওগাঁ", "জয়পুরহাট",
-            "বরিশাল", "পটুয়াখালী", "ভোলা", "পিরোজপুর", "বরগুনা", "ঝালকাঠি",
-            "রংপুর", "দিনাজপুর", "গাইবান্ধা", "কুড়িগ্রাম", "লালমনিরহাট", "নীলফামারী", "পঞ্চগড়", "ঠাকুরগাঁও",
-            "মৌলভীবাজার", "হবিগঞ্জ", "সুনামগঞ্জ", "ময়মনসিংহ", "জামালপুর", "নেত্রকোনা", "শেরপুর"
-        ];
-
-        allBDDistricts.forEach(d => {
-            if (!locationMap[d]) {
-                locationMap[d] = [d + " সদর", "উপজেলা ১", "উপজেলা ২"];
-            }
-        });
-
-        /* ==========================================
-           3. DISPLAY PRODUCTS & LOGIC
-           ========================================== */
-        window.onload = function() {
-            displayProducts(productsList);
-            initDistricts();
-        };
-
-        function displayProducts(items) {
-            const container = document.getElementById('productGrid');
-            container.innerHTML = '';
-
-            items.forEach(p => {
-                container.innerHTML += `
-                    <div class="product-card">
-                        <img src="${p.img}" class="product-img" alt="${p.name}">
-                        <div class="product-details">
-                            <div class="product-name">${p.name}</div>
-                            <div class="product-price">৳ ${p.price}</div>
-                            <button class="order-btn" onclick="openOrderModal('${p.name}')">
-                                <i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function filterCategory(cat) {
-            // Update button styles
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            if (cat === 'all') {
-                displayProducts(productsList);
-            } else {
-                const filtered = productsList.filter(item => item.category === cat);
-                displayProducts(filtered);
-            }
-        }
-
-        /* ==========================================
-           4. FORM & MODAL LOGIC
-           ========================================== */
-        function openOrderModal(productName) {
-            document.getElementById('selectedProduct').value = productName;
-            document.getElementById('orderForm').reset();
-            document.getElementById('formSection').style.display = 'block';
-            document.getElementById('successSection').style.display = 'none';
-            document.getElementById('upazilaSelect').disabled = true;
-            document.getElementById('upazilaSelect').innerHTML = '<option value="">প্রথমে জেলা নির্বাচন করুন</option>';
-            document.getElementById('orderModal').classList.add('active');
-        }
-
-        function closeOrderModal() {
-            document.getElementById('orderModal').classList.remove('active');
-        }
-
-        function initDistricts() {
-            const distSelect = document.getElementById('districtSelect');
-            const sortedDistricts = Object.keys(locationMap).sort((a, b) => a.localeCompare(b, 'bn'));
-
-            sortedDistricts.forEach(dist => {
-                const opt = document.createElement('option');
-                opt.value = dist;
-                opt.textContent = dist;
-                distSelect.appendChild(opt);
-            });
-        }
-
-        function loadUpazilas() {
-            const distSelect = document.getElementById('districtSelect').value;
-            const upazilaSelect = document.getElementById('upazilaSelect');
-
-            upazilaSelect.innerHTML = '<option value="">উপজেলা নির্বাচন করুন</option>';
-
-            if (distSelect && locationMap[distSelect]) {
-                upazilaSelect.disabled = false;
-                locationMap[distSelect].forEach(up => {
-                    const opt = document.createElement('option');
-                    opt.value = up;
-                    opt.textContent = up;
-                    upazilaSelect.appendChild(opt);
-                });
-            } else {
-                upazilaSelect.disabled = true;
-                upazilaSelect.innerHTML = '<option value="">প্রথমে জেলা নির্বাচন করুন</option>';
-            }
-        }
-
-        function submitOrder(e) {
-            e.preventDefault();
-            document.getElementById('formSection').style.display = 'none';
-            document.getElementById('successSection').style.display = 'block';
-        }
-    </script>
-</body>
-</html>
+        const products = [
+            {
+                id: 1,
+                category: 'coffee',
+                name: 'স্পেশাল কফি (Special Coffee)',
+                price: 120,
+                desc: 'প্রিমিয়াম অ্যারাবিকা বিন থেকে তৈরি তাজা অ্যারোমেটিক হট কফি।',
+                image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 2,
+                category: 'biryani',
+                name: 'চিকেন বিরিয়ানি (Chicken Biryani)',
+                price: 250,
+                desc: 'খাস বাসমতি চাল ও স্পেশাল মশলায় তৈরি ঐতিহ্যবাহী চিকেন বিরিয়ানি।',
+                image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 3,
+                category: 'bbq',
+                name: 'চিকেন বারবিকিউ (Chicken BBQ)',
+                price: 180,
+                desc: 'কয়লার আগুনে পোড়ানো মশলাদার ও জ্যুস স্মোকি চিকেন বারবিকিউ।',
+                image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 4,
+                category: 'pizza',
+                name: 'চিজি পিৎজা (Cheesy Pizza)',
+                price: 450,
+                desc: 'অতিরিক্ত চিজ ও রিচ টপিংসে ভরা ৮ ইঞ্চি তাজা গরম পিৎজা।',
+                image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+  
