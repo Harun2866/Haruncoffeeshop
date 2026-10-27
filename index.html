@@ -688,86 +688,81 @@ async function loadLocationData() {
             }
         }
 
-        function initDistrictDropdown() {
-            const distSelect = document.getElementById('district-select');
-            distSelect.innerHTML = '<option value="">জেলা নির্বাচন করুন</option>';
-            allDistricts.sort().forEach(dist => {
-                const opt = document.createElement('option');
-                opt.value = dist;
-                opt.textContent = dist;
-                distSelect.appendChild(opt);
-            });
-        }
+         
 
-        function onDistrictChange() {
-            const dist = document.getElementById('district-select').value;
-            const upaSelect = document.getElementById('upazila-select');
-            const uniSelect = document.getElementById('union-select');
-            const vilSelect = document.getElementById('village-select');
+        
+        
+function getSelectedDistrict() {
+    return bdGeoData
+        .flatMap(division => division.districts)
+        .find(district =>
+            district.bn_name ===
+            document.getElementById("district-select").value
+        );
+}
 
-            upaSelect.innerHTML = '<option value="">উপজেলা নির্বাচন করুন</option>';
-            uniSelect.innerHTML = '<option value="">প্রথমে উপজেলা নির্বাচন করুন</option>';
-            uniSelect.disabled = true;
-            vilSelect.innerHTML = '<option value="">প্রথমে ইউনিয়ন নির্বাচন করুন</option>';
-            vilSelect.disabled = true;
+function onDistrictChange() {
+    const district = getSelectedDistrict();
+    const upazilaSelect = document.getElementById("upazila-select");
+    const unionSelect = document.getElementById("union-select");
+    const villageSelect = document.getElementById("village-select");
 
-            if (dist && locationData[dist]) {
-                upaSelect.disabled = false;
-                Object.keys(locationData[dist]).forEach(upa => {
-                    const opt = document.createElement('option');
-                    opt.value = upa;
-                    opt.textContent = upa;
-                    upaSelect.appendChild(opt);
-                });
-            } else {
-                upaSelect.disabled = true;
-            }
-        }
+    upazilaSelect.innerHTML =
+        '<option value="">উপজেলা নির্বাচন করুন</option>';
+    unionSelect.innerHTML =
+        '<option value="">প্রথমে উপজেলা নির্বাচন করুন</option>';
+    villageSelect.innerHTML =
+        '<option value="">গ্রামের নাম লিখুন</option>';
 
-        function onUpazilaChange() {
-            const dist = document.getElementById('district-select').value;
-            const upa = document.getElementById('upazila-select').value;
-            const uniSelect = document.getElementById('union-select');
-            const vilSelect = document.getElementById('village-select');
+    upazilaSelect.disabled = !district;
+    unionSelect.disabled = true;
+    villageSelect.disabled = false;
 
-            uniSelect.innerHTML = '<option value="">ইউনিয়ন নির্বাচন করুন</option>';
-            vilSelect.innerHTML = '<option value="">প্রথমে ইউনিয়ন নির্বাচন করুন</option>';
-            vilSelect.disabled = true;
-        if (dist && upa && locationData[dist][upa]) {
-                uniSelect.disabled = false;
-                Object.keys(locationData[dist][upa]).forEach(uni => {
-                    const opt = document.createElement('option');
-                    opt.value = uni;
-                    opt.textContent = uni;
-                    uniSelect.appendChild(opt);
-                });
-            } else {
-                uniSelect.disabled = true;
-            }
-        }
+    if (district) {
+        district.upazilas.forEach(upazila => {
+            const option = document.createElement("option");
+            option.value = upazila.bn_name;
+            option.textContent = upazila.bn_name;
+            upazilaSelect.appendChild(option);
+        });
+    }
+}
 
-        function onUnionChange() {
-            const dist = document.getElementById('district-select').value;
-            const upa = document.getElementById('upazila-select').value;
-            const uni = document.getElementById('union-select').value;
-            const vilSelect = document.getElementById('village-select');
+function onUpazilaChange() {
+    const district = getSelectedDistrict();
+    const upazilaName =
+        document.getElementById("upazila-select").value;
 
-            vilSelect.innerHTML = '<option value="">গ্রাম নির্বাচন করুন</option>';
+    const upazila = district?.upazilas.find(item =>
+        item.bn_name === upazilaName
+    );
 
-            if (dist && upa && uni && locationData[dist][upa][uni]) {
-                vilSelect.disabled = false;
-                locationData[dist][upa][uni].forEach(vil => {
-                    const opt = document.createElement('option');
-                    opt.value = vil;
-                    opt.textContent = vil;
-                    vilSelect.appendChild(opt);
-                });
-            } else {
-                vilSelect.disabled = true;
-            }
-        }
+    const unionSelect = document.getElementById("union-select");
+    const villageSelect = document.getElementById("village-select");
 
-        function openDetailsModal(id) {
+    unionSelect.innerHTML =
+        '<option value="">ইউনিয়ন নির্বাচন করুন</option>';
+    villageSelect.value = "";
+
+    unionSelect.disabled = !upazila;
+
+    if (upazila) {
+        upazila.unions.forEach(union => {
+            const option = document.createElement("option");
+            option.value = union.bn_name;
+            option.textContent = union.bn_name;
+            unionSelect.appendChild(option);
+        });
+    }
+}
+
+function onUnionChange() {
+    // গ্রামের পূর্ণ তালিকা ডেটাসেটে নেই।
+    // গ্রাহক নিজে গ্রামের নাম লিখবেন।
+    document.getElementById("village-select").value = "";
+}
+ 
+  function openDetailsModal(id) {
             selectedProduct = products.find(p => p.id === id);
             document.getElementById('modal-img').src = selectedProduct.image;
             document.getElementById('modal-title').textContent = selectedProduct.name;
